@@ -10,7 +10,7 @@ function makeRandom(seed) {
     };
 }
 
-function benchmarkAlgorithm(algorithmName, algorithm, options) {
+function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
     options = options || {};
 
     function run(width, height, seed) {
@@ -22,7 +22,7 @@ function benchmarkAlgorithm(algorithmName, algorithm, options) {
         else
             noptions.random = Math.random;
         var maze = new Maze(width, height);
-        algorithm(maze, noptions);
+        algorithmFunc(maze, noptions);
         return maze;
     }
 

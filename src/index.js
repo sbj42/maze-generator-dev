@@ -1,2 +1,3 @@
-exports.testAlgorithm = require('./test-algorithm');
-exports.benchmarkAlgorithm = require('./benchmark-algorithm');
+exports.testAlgorithm = require('./test');
+exports.benchmarkAlgorithm = require('./benchmark');
+exports.demoAlgorithm = require('./demo');

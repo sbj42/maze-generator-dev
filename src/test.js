@@ -20,7 +20,7 @@ function cellPassageCount(c) {
     return (c.north() ? 1 : 0) + (c.east() ? 1 : 0) + (c.south() ? 1 : 0) + (c.west() ? 1 : 0);
 }
 
-function testAlgorithm(algorithmName, algorithm, options) {
+function testAlgorithm(algorithmName, algorithmFunc, options) {
     options = options || {};
 
     describe(algorithmName, function() {
@@ -34,7 +34,7 @@ function testAlgorithm(algorithmName, algorithm, options) {
             else
                 noptions.random = Math.random;
             var maze = new Maze(width, height);
-            algorithm(maze, noptions);
+            algorithmFunc(maze, noptions);
             return maze;
         }
 
