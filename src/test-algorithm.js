@@ -21,6 +21,7 @@ function cellPassageCount(c) {
 }
 
 function testAlgorithm(algorithmName, algorithm, options) {
+    options = options || {};
 
     describe(algorithmName, function() {
 

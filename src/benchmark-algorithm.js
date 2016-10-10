@@ -11,6 +11,7 @@ function makeRandom(seed) {
 }
 
 function benchmarkAlgorithm(algorithmName, algorithm, options) {
+    options = options || {};
 
     function run(width, height, seed) {
         var noptions = {};
