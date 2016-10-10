@@ -2,6 +2,12 @@ var process = require('process');
 var Maze = require('@sbj42/maze-generator-core').Maze;
 
 function cliDemoAlgorithm(algorithmName, algorithmFunc, width, height, options) {
+    width = width || 39;
+    height = height || 15;
+    options = options || {};
+    if (!options.random)
+        options.random = Math.random;
+        
     var maze = new Maze(width, height);
     algorithmFunc(maze, options);
 
