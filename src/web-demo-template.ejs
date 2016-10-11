@@ -8,12 +8,13 @@
     <div>
         <%= htmlWebpackPlugin.options.title %>
     </div>
-    <div>
-        Width: <input id="width" type="text" value="30"></input>
-        Height: <input id="height" type="text" value="30"></input>
+    <div style="padding: 5px;">
+        Width: <input id="width" type="text" value="100" size="5"></input>
+        Height: <input id="height" type="text" value="100" size="5"></input>
+        Seed: <input id="seed" type="text" value="" size="5"></input>
         <input id="go" type="button" value="Go"></input>
     </div>
-    <pre id="result">
-    </pre>
+    <canvas id="result">
+    </canvas>
 </body>
 </html>
