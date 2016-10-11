@@ -23,7 +23,9 @@
     "@sbj42/maze-generator-core": "^0.1.2",
     "benchmark": "^2.1.1",
     "mocha": "^3.1.0",
-    "random-js": "^1.0.8"
+    "random-js": "^1.0.8",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^1.13.2"
   },
   "devDependencies": {
     "eslint": "^3.7.1"
