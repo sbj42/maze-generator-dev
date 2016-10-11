@@ -1,6 +1,6 @@
 /* eslint-env browser */
 var algorithmFunc = require('mg-algorithm');
-var Maze = require('maze-generator-core').Maze;
+var Maze = require('@sbj42/maze-generator-core').Maze;
 
 var go = document.getElementById('go');
 go.addEventListener('click', function() {
@@ -9,8 +9,12 @@ go.addEventListener('click', function() {
     if (!width || !height || width < 1 || height < 1)
         return;
 
+    var options = {
+        random: Math.random
+    };
+
     var maze = new Maze(width, height);
-    algorithmFunc(maze, {});
+    algorithmFunc(maze, options);
 
     var html = '';
     var x, y;

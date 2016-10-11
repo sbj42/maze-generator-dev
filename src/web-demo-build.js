@@ -3,6 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 function webDemoAlgorithm(algorithmName, algorithmModulePath, outPath) {
     webpack({
+        context: __dirname,
         entry: ['./web-demo-main'],
         output: {
             path: outPath,
