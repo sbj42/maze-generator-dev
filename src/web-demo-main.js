@@ -16,7 +16,7 @@ var go = document.getElementById('go');
 go.addEventListener('click', function() {
     var width = +document.getElementById('width').value;
     var height = +document.getElementById('height').value;
-    var seed = +document.getElementById('height').value;
+    var seed = +document.getElementById('seed').value;
     var zoom = 4;
     if (!width || !height || width < 1 || height < 1)
         return;
