@@ -15,7 +15,8 @@ function webDemoAlgorithm(algorithmName, algorithmModulePath, outPath) {
             }
         },
         plugins: [new HtmlWebpackPlugin({
-            title: algorithmName + ' demo'
+            title: algorithmName + ' demo',
+            template: 'web-demo-template.ejs'
         })]
     }, function() {
     });
