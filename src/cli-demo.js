@@ -4,7 +4,9 @@ var GridMask = require('@sbj42/maze-generator-core').GridMask;
 
 function makeMask(width, height) {
     if (width < 2 || height < 2) throw new Error('cannot test mask with this size: ' + width + 'x' + height);
-    var mask = new GridMask(width, height, false);
+    var mask = new GridMask(width, height, {
+        interior: true
+    });
     for (var x = 0 ; x < width; x += 2) {
         for (var y = 0; y < height; y += 2) {
             mask.set(x, y, false);

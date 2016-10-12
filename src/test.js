@@ -23,7 +23,9 @@ function cellPassageCount(c) {
 
 function makeMask(width, height) {
     if (width < 2 || height < 2) throw new Error('cannot test mask with this size: ' + width + 'x' + height);
-    var mask = new GridMask(width, height, false);
+    var mask = new GridMask(width, height, {
+        interior: true
+    });
     for (var x = 0 ; x < width; x += 2) {
         for (var y = 0; y < height; y += 2) {
             mask.set(x, y, false);
@@ -65,6 +67,17 @@ function testAlgorithmOpt(algorithmFunc, options) {
     //     }
     //     assert.ok(deadEndCount >= 2, 'not enough dead ends');
     // });
+
+    it('should have passages', function() {
+        var m1 = gen(11, 10, 10);
+        var passages = 0;
+        for (var y = 0; y < m1.height(); y ++) {
+            for (var x = 0; x < m1.width(); x ++) {
+                passages += cellPassageCount(m1.cell(x, y));
+            }
+        }
+        assert.ok(passages > 0, 'no passages');
+    });
 
     it('should not have passages that go out of bounds', function() {
         var m1 = gen(16, 18, 8);
