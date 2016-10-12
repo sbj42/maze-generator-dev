@@ -1,6 +1,7 @@
 /* eslint-env browser */
 var algorithmFunc = require('mg-algorithm');
 var Maze = require('@sbj42/maze-generator-core').Maze;
+var GridMask = require('@sbj42/maze-generator-core').GridMask;
 var dirs = require('@sbj42/maze-generator-core').directions;
 
 function makeRandom(seed) {
@@ -12,11 +13,28 @@ function makeRandom(seed) {
     };
 }
 
+function makeMask(width, height) {
+    var mask = new GridMask(width, height, {
+        interior: true
+    });
+    for (var x = 0 ; x < width; x += 10) {
+        for (var y = 0; y < height; y += 10) {
+            for (var xx = 0; xx < 5; xx ++) {
+                for (var yy = 0; yy < 5; yy ++) {
+                    mask.set(x + 5 + xx, y + 5 + yy, false);
+                }
+            }
+        }
+    }
+    return mask;
+}
+
 var go = document.getElementById('go');
 go.addEventListener('click', function() {
     var width = +document.getElementById('width').value;
     var height = +document.getElementById('height').value;
     var seed = +document.getElementById('seed').value;
+    var mask = +document.getElementById('mask').checked;
     var zoom = 4;
     if (!width || !height || width < 1 || height < 1)
         return;
@@ -24,6 +42,8 @@ go.addEventListener('click', function() {
     var options = {
         random: seed ? makeRandom(seed) : Math.random
     };
+    if (mask)
+        options.mask = makeMask(width, height);
 
     var maze = new Maze(width, height);
     algorithmFunc(maze, options);
