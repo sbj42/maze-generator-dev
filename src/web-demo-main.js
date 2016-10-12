@@ -61,6 +61,12 @@ go.addEventListener('click', function() {
         var cx, x;
         for (x = 0; x < maze.width(); x ++) {
             cx = x * (1 + zoom);
+            if (mask) {
+                if (!options.mask.get(x, y)) {
+                    context.fillRect(cx, cy, zoom, zoom);
+                    continue;
+                }
+            }
             context.fillRect(cx, cy, 1, 1);
             if (!maze.getPassage(x, y, dirs.NORTH))
                 context.fillRect(cx + 1, cy, zoom, 1);
