@@ -1,15 +1,33 @@
 var process = require('process');
 var Maze = require('@sbj42/maze-generator-core').Maze;
+var GridMask = require('@sbj42/maze-generator-core').GridMask;
+
+function makeMask(width, height) {
+    if (width < 2 || height < 2) throw new Error('cannot test mask with this size: ' + width + 'x' + height);
+    var mask = new GridMask(width, height, false);
+    for (var x = 0 ; x < width; x += 2) {
+        for (var y = 0; y < height; y += 2) {
+            mask.set(x, y, false);
+        }
+    }
+    return mask;
+}
 
 function cliDemoAlgorithm(algorithmName, algorithmFunc, width, height, options) {
     width = width || 39;
     height = height || 15;
-    options = options || {};
-    if (!options.random)
-        options.random = Math.random;
-        
+    var noptions = {};
+    if (options) {
+        for (var k in options)
+            noptions[k] = options[k];
+    }
+    if (!noptions.random)
+        noptions.random = Math.random;
+    if (noptions.mask === true)
+        noptions.mask = makeMask(width, height);
+
     var maze = new Maze(width, height);
-    algorithmFunc(maze, options);
+    algorithmFunc(maze, noptions);
 
     var stdout = process.stdout;
     stdout.write(algorithmName + ' ' + width + 'x' + height + '\n');
