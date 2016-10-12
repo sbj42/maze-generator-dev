@@ -90,6 +90,20 @@ function testAlgorithmOpt(algorithmFunc, options) {
             }
         }
     });
+
+    if (options.mask) {
+        it('should have masked cells', function() {
+            var m1 = gen(15, 15, 9);
+            var masked = 0;
+            for (var y = 0; y < m1.height(); y ++) {
+                for (var x = 0; x < m1.width(); x ++) {
+                    if (cellPassageCount(m1.cell(x, y)) == 0)
+                        masked ++;
+                }
+            }
+            assert.ok(masked > 0, 'no masked cells');
+        });
+    }
 }
 
 function testAlgorithm(algorithmName, algorithmFunc, options) {
