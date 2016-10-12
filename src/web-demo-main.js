@@ -63,7 +63,7 @@ go.addEventListener('click', function() {
             cx = x * (1 + zoom);
             if (mask) {
                 if (!options.mask.get(x, y)) {
-                    context.fillRect(cx, cy, zoom, zoom);
+                    context.fillRect(cx, cy, 1 + zoom, 1 + zoom);
                     continue;
                 }
             }
