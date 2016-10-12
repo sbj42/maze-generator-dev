@@ -39,7 +39,7 @@ function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
         }).run().toString());
         if (algorithmFunc.features && algorithmFunc.features.mask) {
             var mask = new GridMask(i, i, {
-                internal: true
+                interior: true
             });
             for (var x = 0; x < i; x += 10) {
                 for (var y = 0; y < i; y += 10) {
