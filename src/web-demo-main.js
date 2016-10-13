@@ -4,6 +4,10 @@ var Maze = require('@sbj42/maze-generator-core').Maze;
 var GridMask = require('@sbj42/maze-generator-core').GridMask;
 var dirs = require('@sbj42/maze-generator-core').directions;
 
+if (!(algorithmFunc.features && algorithmFunc.features.mask)) {
+    document.getElementById('ifmask').style.display = 'none';
+}
+
 function makeRandom(seed) {
     var randomjs = require('random-js');
     var engine = randomjs.engines.mt19937().seed(seed);
