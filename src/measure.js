@@ -23,7 +23,7 @@ function run(algorithmFunc, width, height, seed) {
 function cellPassageCount(c) {
     return (c.north() ? 1 : 0) + (c.east() ? 1 : 0) + (c.south() ? 1 : 0) + (c.west() ? 1 : 0);
 }
-function countDeadEnds(maze) {
+function countDeadEndsRatio(maze) {
     var count = 0;
     var total = 0;
     for (var x = 0 ; x < maze.width(); x += 2) {
@@ -33,19 +33,32 @@ function countDeadEnds(maze) {
             total ++;
         }
     }
-    return count / total;
+    return count * 100 / total;
 }
 
 function init() {
     return {
-        deadEnds: 0,
+        deadEnds: {
+            total: 0,
+            totalSq: 0
+        },
         count: 0
     };
 }
 
 function measure(data, maze) {
-    data.deadEnds += countDeadEnds(maze);
+    var count = countDeadEndsRatio(maze);
+    data.deadEnds.total += count;
+    data.deadEnds.totalSq += count * count;
     data.count ++;
+}
+
+function getAvg(total, count) {
+    return total / count;
+}
+
+function getStdDev(total, totalSq, count) {
+    return (Math.sqrt(count * totalSq - total * total) / count * 100);
 }
 
 function measureAlgorithm(algorithmName, algorithmFunc) {
@@ -58,8 +71,8 @@ function measureAlgorithm(algorithmName, algorithmFunc) {
         var maze = run(algorithmFunc, 100, 100, i);
         measure(data, maze);
     }
-    console.info(algorithmFunc + '#dead-ends: ' + (data.deadEnds / data.count));
-    // TODO stddev?
+    console.info(algorithmName + '#dead-ends: ' + (getAvg(data.deadEnds, data.count) * 100).toFixed(2) + '% stddev='
+        + (getStdDev(data.deadEnds.total, data.deadEnds.totalSq, data.count) * 100).toFixed(2) + '%');
 }
 
 module.exports = measureAlgorithm;

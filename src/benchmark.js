@@ -33,10 +33,11 @@ function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
 
     /*eslint no-console: "off"*/
     /*global console*/
-    for (var i = 10; i <= 100; i += 10) {
-        console.info(new benchmark(algorithmName+'#' + i + 'x' + i, function() {
+    for (var i = 8; i <= 128; i *= 2) {
+        var bench = new benchmark(algorithmName+'#' + i + 'x' + i, function() {
             run(algorithmFunc, i, i, options, 1);
-        }).run().toString());
+        }).run();
+        console.info(bench.toString());
         if (algorithmFunc.features && algorithmFunc.features.mask) {
             var mask = new GridMask(i, i, {
                 interior: true
