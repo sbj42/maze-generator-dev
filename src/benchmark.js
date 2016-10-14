@@ -34,7 +34,7 @@ function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
     /*eslint no-console: "off"*/
     /*global console*/
     for (var i = 8; i <= 128; i *= 2) {
-        var bench = new benchmark(algorithmName+'#' + i + 'x' + i, function() {
+        var bench = new benchmark(algorithmName+' ' + i + 'x' + i, function() {
             run(algorithmFunc, i, i, options, 1);
         }).run();
         console.info(bench.toString());
@@ -42,16 +42,16 @@ function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
             var mask = new GridMask(i, i, {
                 interior: true
             });
-            for (var x = 0; x < i; x += 10) {
-                for (var y = 0; y < i; y += 10) {
-                    for (var xx = 0; xx < 5; xx ++) {
-                        for (var yy = 0; yy < 5; yy ++) {
+            for (var x = 0; x < i; x += 8) {
+                for (var y = 0; y < i; y += 8) {
+                    for (var xx = 0; xx < 4; xx ++) {
+                        for (var yy = 0; yy < 4; yy ++) {
                             mask.set(x + xx, y + yy, false);
                         }
                     }
                 }
             }
-            console.info(new benchmark(algorithmName+'.mask#' + i + 'x' + i, function() {
+            console.info(new benchmark(algorithmName+' ' + i + 'x' + i + ' masked', function() {
                 run(algorithmFunc, i, i, options, 1, {
                     mask: mask
                 });
