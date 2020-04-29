@@ -32,7 +32,6 @@ function benchmarkAlgorithm(algorithmName, algorithmFunc, options) {
     options = options || {};
 
     /*eslint no-console: "off"*/
-    /*global console*/
     for (var i = 8; i <= 128; i *= 2) {
         var bench = new benchmark(algorithmName+' ' + i + 'x' + i, function() {
             run(algorithmFunc, i, i, options, 1);

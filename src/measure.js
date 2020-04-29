@@ -223,7 +223,6 @@ function getStdDev(total, totalSq, count) {
 function measureAlgorithm(algorithmName, algorithmFunc) {
 
     /*eslint no-console: "off"*/
-    /*global console*/
 
     var data = init();
     var width = 100;
