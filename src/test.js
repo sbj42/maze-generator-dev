@@ -7,7 +7,7 @@ var GridMask = require('@sbj42/maze-generator-core').GridMask;
 
 function makeRandom(seed) {
     var randomjs = require('random-js');
-    var engine = randomjs.engines.mt19937().seed(seed);
+    var engine = randomjs.MersenneTwister19937.seed(seed);
     var real = randomjs.real(0, 1);
     return function() {
         return real(engine);
