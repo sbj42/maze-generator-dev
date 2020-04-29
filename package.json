@@ -1,6 +1,6 @@
 {
   "name": "@sbj42/maze-generator-dev",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Development support library for maze-generator plugins",
   "main": "src",
   "scripts": {
